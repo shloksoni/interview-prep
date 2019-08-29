@@ -21,17 +21,11 @@ void solve(){
 
 int main(){
    
-    list<int> pos;
-    for(int i = 0; i < 10; i++)pos.push_back(i);
+    int t;
+    cin>>t;
+    while(t--)solve();
 
-    for(int i : pos)cout<<i<<" ";
-    auto it = pos.begin();
-    pos.erase(it++);
-
-    while(){
-      cout<<*it++<<" ";
-      if(it == pos.end()) it = pos.begin();
-    }
+    return 0;
 
    
 
