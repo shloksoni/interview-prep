@@ -55,7 +55,7 @@ string check(long n)
 
 
 int main()
-{S
+{
 
 
 
