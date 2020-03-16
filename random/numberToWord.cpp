@@ -1,67 +1,45 @@
-
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+#define vi vector<int>
 using namespace std;
-string u19[] = { "", "one ", "two ", "three ", "four ",
-                 "five ", "six ", "seven ", "eight ",
-                 "nine ", "ten ", "eleven ", "twelve ",
-                 "thirteen ", "fourteen ", "fifteen ",
-                 "sixteen ", "seventeen ", "eighteen ",
-                 "nineteen "
-               };
-string tens[] = { "", "", "twenty ", "thirty ", "forty ",
-                 "fifty ", "sixty ", "seventy ", "eighty ",
-                 "ninety "
-               };
-string check2(int n, string s)
-{
-    string str = "";
-    cout<<n<<"\n";
-    if (n > 19)
-        str += tens[n / 10] + u19[n % 10];
-    else
-        str += u19[n];
 
+int main(){
+   int t;
+   cin>>t;
+   while(t--){
+    int n,k;
+    bool flag = true;
+    cin>>n>>k;
+    vi a(n),res;
+    for(int i =0; i < n; i++) cin>>a[i];
+    for(int i = n-1; i>=0; i-- ){
+        if(k <= 0){
+            for(int j = i; j >=0; j--) {
+                res.push_back(0);
 
-    if (n)
-        str += s;
+            }
+            break;
+        }
+        if(k % a[i] == 0){
+            if(i == 0){
+                flag = false;
+                break;
+            }
+            res.push_back(k / a[i] - 1);
+            k -= (a[i] * (k/a[i] - 1));
 
-    return str;
-}
+        }
+        else{
+            res.push_back(k/a[i] + 1);
+            k -= (a[i] * (k/a[i] + 1));
 
+        }
+     }
+     if(flag){
+        cout<<"YES";
+        for(int i = n-1; i >=0; i--)cout<<res[i]<<" ";
+     }
+     else cout<<"NO";
+     cout<<"\n";
+   }
 
-string check(long n)
-{
-
-    string ans;
-
-
-
-    ans += check2(((n / 100000) % 100), "lakh ");
-
-
-    ans += check2(((n / 1000) % 100), "thousand ");
-
-
-    ans += check2(((n / 100) % 10), "hundred ");
-
-    if (n > 100 && n % 100)
-        ans += "and ";
-
-
-    ans += check2((n % 100), "");
-
-    return ans;
-}
-
-
-int main()
-{
-
-
-
-    long x;
-    cin>>x;
-    cout << check(x);;
-
-    return 0;
 }
